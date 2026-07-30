@@ -17,20 +17,24 @@
   --shadow-lg:0 24px 60px rgba(6,6,6,.24);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:var(--font-ui); color:var(--ink);
-  background:var(--canvas); min-height:100vh;
+html{overflow:hidden}
+html,body{
+  height:100%; overscroll-behavior:none;
+  -webkit-text-size-adjust:100%; touch-action:manipulation;
 }
-
-/* Screen artboard — flush, top-left anchored, no phone frame */
+/* App shell — fills the viewport, page never scrolls/swipes as a whole */
+body{
+  font-family:var(--font-ui); color:var(--ink); background:var(--canvas);
+  position:fixed; inset:0; overflow:hidden;
+  display:flex; justify-content:flex-start;
+}
 .phone{
-  position:relative; width:390px; height:844px; background:var(--canvas);
+  position:relative; width:100%; max-width:390px; height:100dvh; background:var(--canvas);
   overflow:hidden; display:flex; flex-direction:column;
 }
-.status-bar{height:44px; flex:0 0 44px}
-.home-indicator{height:24px; flex:0 0 24px; display:flex; align-items:center; justify-content:center}
-.home-indicator::after{content:""; width:134px; height:5px; border-radius:3px; background:#241E17; opacity:.35}
+/* Simulated iOS chrome removed — screens run edge-to-edge like a native app */
+.status-bar{display:none}
+.home-indicator{display:none}
 #app{flex:1 1 auto; position:relative; overflow:hidden}
 
 /* Generic screen */
