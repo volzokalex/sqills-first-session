@@ -17,7 +17,7 @@
   --shadow-lg:0 24px 60px rgba(6,6,6,.24);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{overflow:hidden}
+html{overflow:hidden; color-scheme:light dark} /* area beyond the phone = OS system background */
 html,body{
   height:100%; overscroll-behavior:none;
   -webkit-text-size-adjust:100%; touch-action:manipulation;
@@ -27,7 +27,7 @@ html,body{
    backdrop. No white surround, no device frame. Height is 100% of the locked
    body (= the viewport) — no dvh, so the screen can never blank/collapse. */
 body{
-  font-family:var(--font-ui); color:var(--ink); background:#1c1c1e;
+  font-family:var(--font-ui); color:var(--ink); background:transparent; /* only the phone is painted */
   position:fixed; inset:0; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
