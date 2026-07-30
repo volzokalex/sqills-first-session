@@ -17,7 +17,7 @@
   --shadow-lg:0 24px 60px rgba(6,6,6,.24);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{overflow:hidden; color-scheme:light dark} /* area beyond the phone = OS system background */
+html{overflow:hidden}
 html,body{
   height:100%; overscroll-behavior:none;
   -webkit-text-size-adjust:100%; touch-action:manipulation;
@@ -27,16 +27,17 @@ html,body{
    backdrop. No white surround, no device frame. Height is 100% of the locked
    body (= the viewport) — no dvh, so the screen can never blank/collapse. */
 body{
-  font-family:var(--font-ui); color:var(--ink); background:transparent; /* only the phone is painted */
+  font-family:var(--font-ui); color:var(--ink); background:#2a2320;
   position:fixed; inset:0; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
-/* The app fills the entire viewport — no surround at any size. The "resolution"
-   comes from the device/viewport itself: on an iPhone 16 it is exactly 393×852;
-   in DevTools pick the iPhone 16 preset to see that framing. */
+/* Mobile (iPhone) resolution on every screen: a 393×852 column, centered, no
+   frame/bezel. Fills an iPhone exactly; on desktop the same mobile column sits
+   on the dark backdrop. */
 .phone{
   position:relative;
-  width:100%; height:100%;
+  width:100%; max-width:393px;
+  height:100%; max-height:852px;
   background:var(--canvas); overflow:hidden;
   display:flex; flex-direction:column;
 }
