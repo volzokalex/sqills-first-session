@@ -22,27 +22,20 @@ html,body{
   height:100%; overscroll-behavior:none;
   -webkit-text-size-adjust:100%; touch-action:manipulation;
 }
-/* App shell. Whole page never scrolls/swipes — scrolling lives inside a screen.
-   Desktop: a centered phone mockup. Real phones: fills the entire screen. */
+/* The prototype IS the app. It fills the phone screen edge-to-edge; on wider
+   screens it stays a phone-width column centered on a neutral system-dark
+   backdrop. No white surround, no device frame. Height is 100% of the locked
+   body (= the viewport) — no dvh, so the screen can never blank/collapse. */
 body{
-  font-family:var(--font-ui); color:var(--ink); background:#1c1c1e; /* neutral system backdrop */
+  font-family:var(--font-ui); color:var(--ink); background:#1c1c1e;
   position:fixed; inset:0; overflow:hidden;
-  display:flex; align-items:center; justify-content:center;
+  display:flex; align-items:stretch; justify-content:center;
 }
 .phone{
-  position:relative; width:390px;
-  height:100vh; height:100dvh; max-height:844px;   /* box = min(viewport, 844); 100vh fallback */
+  position:relative;
+  width:100%; max-width:480px; height:100%;
   background:var(--canvas); overflow:hidden;
   display:flex; flex-direction:column;
-  border-radius:40px; box-shadow:0 30px 80px rgba(0,0,0,.45);
-}
-/* Real phones — go fullscreen, drop the mockup frame */
-@media (max-width:480px){
-  body{background:var(--canvas)}
-  .phone{
-    width:100vw; height:100vh; height:100dvh;      /* 100vh fallback, then dvh */
-    max-height:none; border-radius:0; box-shadow:none;
-  }
 }
 /* Simulated iOS chrome removed — screens run edge-to-edge like a native app */
 .status-bar{display:none}
@@ -113,7 +106,7 @@ h2.d{font-family:var(--font-display); font-weight:700; font-size:24px; line-heig
 @keyframes pop{from{transform:scale(1)} to{transform:scale(1.06)}}
 @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
 .intro .skip{position:absolute; top:14px; right:16px; z-index:3; color:#fff; opacity:.85; background:rgba(0,0,0,.18); border:0; border-radius:999px; padding:8px 14px; font-size:13px; cursor:pointer}
-.intro .cont{position:absolute; left:24px; right:24px; bottom:34px; z-index:3; opacity:0; animation:rise .6s ease 3.7s both}
+.intro .cont{position:absolute; left:24px; right:24px; bottom:calc(56px + env(safe-area-inset-bottom,0px)); z-index:3; opacity:0; animation:rise .6s ease 3.7s both}
 
 /* DS icon glyphs */
 .ic{display:inline-block; vertical-align:middle}
