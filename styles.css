@@ -31,13 +31,12 @@ body{
   position:fixed; inset:0; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
-/* Artboard sized to iPhone 16 (393 × 852 pt). On an iPhone 16 it fills the
-   screen exactly; on wider/taller screens it stays a centered 393×852 column
-   on the system-dark backdrop. */
+/* The app fills the entire viewport — no surround at any size. The "resolution"
+   comes from the device/viewport itself: on an iPhone 16 it is exactly 393×852;
+   in DevTools pick the iPhone 16 preset to see that framing. */
 .phone{
   position:relative;
-  width:100%; max-width:393px;
-  height:100%; max-height:852px;
+  width:100%; height:100%;
   background:var(--canvas); overflow:hidden;
   display:flex; flex-direction:column;
 }
